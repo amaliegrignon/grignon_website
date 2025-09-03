@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRIGNON | Handmade Clothing Staples</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.4;
+            color: #000;
+            background: #fff;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: #fff;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 200;
+            color: #000;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        
+        .logo img {
+            height: 70px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #1a1a1a;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background-image: url('/images/raageleje.jpg'); 
+            background-repeat: no-repeat; 
+            background-position: center; 
+            background-size: cover; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ffffff65;
+            color: #000;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border-radius: 20px;
+        }
+
+        .cta-button:hover {
+            background: #f0f0f0;
+        }
+
+        /* Sale Banner */
+        .sale-banner {
+            background: #ff0000;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: left;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #000;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: #fff;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+            border-radius: 20px;
+        }
+
+        .product-card:hover {
+            transform: scale(1.02);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 350px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #ccc;
+            position: relative;
+        }
+
+        .sale-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ff0000a1;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #1a1a1a;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .product-info {
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-prices {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            font-size: 1rem;
+            color: #000;
+            font-weight: 700;
+        }
+
+        .original-price {
+            font-size: 0.9rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .buy-button {
+            width: 100%;
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: background 0.2s ease;
+            border-radius: 20px;
+        }
+
+        .buy-button:hover {
+            background: #333;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: #f8f8f8;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #000;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .newsletter p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #000;
+            border-right: none;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background: #000;
+            color: #fff;
+            border: 2px solid #000;
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: background 0.2s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: #333;
+            border-color: #333;
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #000;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .about p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: #fff;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .newsletter-form input {
+                border-right: 2px solid #000;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sale Banner -->
+    <!--<div class="sale-banner">
+        UP TO 50% OFF EVERYTHING | FREE SHIPPING OVER £50
+    </div> -->
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <img src="/images/logo.png">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Shop</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <div class="cart-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="m1 1 4 4 2.5 14.5h13.5"></path>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Handmade Staples</h1>
+            <p>Premium Quality | Sustainable Materials | Crafted with Love</p>
+            <a href="#products" class="cta-button">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-badge">New</div>
+                    <p style="background-image: url('/images/md.png'); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover; width: 100%; height: 100%;"></p>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Organic Cotton Shirt</h3>
+                    <div class="product-prices">
+                        <span class="product-price">£45</span>
+                        <span class="original-price">£75</span>
+                    </div>
+                    <button class="buy-button">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    👗
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Linen Summer Dress</h3>
+                    <div class="product-prices">
+                        <span class="product-price">£85</span>
+                    </div>
+                    <button class="buy-button">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="sale-badge">Sale</div>
+                    🧥
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Wool Cardigan</h3>
+                    <div class="product-prices">
+                        <span class="product-price">£65</span>
+                        <span class="original-price">£120</span>
+                    </div>
+                    <button class="buy-button">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="sale-badge">Sale</div>
+                    👖
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Eco Denim Jeans</h3>
+                    <div class="product-prices">
+                        <span class="product-price">£55</span>
+                        <span class="original-price">£95</span>
+                    </div>
+                    <button class="buy-button">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    🧣
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Hand-Painted Silk Scarf</h3>
+                    <div class="product-prices">
+                        <span class="product-price">£35</span>
+                    </div>
+                    <button class="buy-button">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="sale-badge">Sale</div>
+                    🧶
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Alpaca Knit Sweater</h3>
+                    <div class="product-prices">
+                        <span class="product-price">£75</span>
+                        <span class="original-price">£135</span>
+                    </div>
+                    <button class="buy-button">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    👕
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Hemp T-Shirt</h3>
+                    <div class="product-prices">
+                        <span class="product-price">£25</span>
+                    </div>
+                    <button class="buy-button">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="sale-badge">Sale</div>
+                    🧦
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Merino Wool Socks</h3>
+                    <div class="product-prices">
+                        <span class="product-price">£15</span>
+                        <span class="original-price">£25</span>
+                    </div>
+                    <button class="buy-button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>Stay Updated</h2>
+            <p>Get notified about new drops, exclusive sales, and behind-the-scenes content.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About Artisan</h2>
+        <p>We create premium handmade clothing using sustainable materials and traditional craftsmanship techniques. Every piece is carefully constructed in small batches, ensuring exceptional quality and attention to detail.</p>
+        <p>Our commitment to sustainability means we source only organic and eco-friendly fabrics, supporting both environmental responsibility and ethical fashion practices.</p>
+        <p>When you choose Artisan, you're supporting independent makers and investing in pieces that are built to last.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Shop</h3>
+                <a href="#">New Arrivals</a>
+                <a href="#">Sale</a>
+                <a href="#">Tops</a>
+                <a href="#">Bottoms</a>
+                <a href="#">Accessories</a>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <a href="#">Contact Us</a>
+                <a href="#">Size Guide</a>
+                <a href="#">Shipping</a>
+                <a href="#">Returns</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <a href="#">About</a>
+                <a href="#">Sustainability</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Newsletter</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ARTISAN. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cartCount = 0;
+        const cartIcon = document.querySelector('.cart-icon');
+        const buyButtons = document.querySelectorAll('.buy-button');
+
+        buyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                cartCount++;
+                cartIcon.textContent = `Cart (${cartCount})`;
+                
+                // Visual feedback
+                const originalText = this.textContent;
+                this.style.background = '#666';
+                this.textContent = 'Added!';
+                
+                setTimeout(() => {
+                    this.style.background = '#000';
+                    this.textContent = originalText;
+                }, 1000);
+            });
+        });
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const button = this.querySelector('button');
+            const input = this.querySelector('input');
+            
+            button.textContent = 'Subscribed!';
+            button.style.background = '#666';
+            
+            setTimeout(() => {
+                button.textContent = 'Subscribe';
+                button.style.background = '#000';
+                input.value = '';
+            }, 2000);
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
